@@ -1,4 +1,4 @@
-// src/components/ControlPanel.tsx 
+// src/components/ControlPanel.tsx
 'use client';
 
 import { useState } from 'react';
@@ -13,7 +13,6 @@ export function ControlPanel() {
   const [activeTab, setActiveTab] = useState<'filters' | 'history'>('filters');
   const [isPanelOpen, setIsPanelOpen] = useState(true);
 
-  // Simple performance metric
   const totalConnections = realtimeReadings.length;
   const highLatencyCount = realtimeReadings.filter(r => r.status === 'HIGH').length;
 
@@ -21,26 +20,24 @@ export function ControlPanel() {
     <div 
       className={`absolute top-0 right-0 z-20 h-full bg-gradient-to-b from-gray-900/95 to-gray-950/95 backdrop-blur-xl text-white 
                   shadow-2xl shadow-black/50 transition-all duration-500 ease-in-out overflow-y-auto
-                  ${isPanelOpen ? 'w-full max-w-sm md:max-w-md' : 'w-0'}
+                  ${isPanelOpen ? 'w-full max-w-sm md:max-w-md' : 'w-16'}
                   border-l border-gray-700/50`}
     >
-      {/* Panel Toggle Button */}
       <button 
         onClick={() => setIsPanelOpen(!isPanelOpen)} 
-        className={`absolute -left-12 top-1/2 transform -translate-y-1/2 p-3 
+        className={`absolute -left-12 top-1/2 transform -translate-y-1/2 p-4 
                    bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 
-                   text-white rounded-l-xl transition-all duration-300 z-30 shadow-2xl border border-cyan-400/20
-                   hover:scale-110 active:scale-95 cursor-pointer ${isPanelOpen ? '' : 'rounded-r-xl'}`}
+                   text-white rounded-l-xl transition-all duration-300 z-50 shadow-2xl border border-cyan-400/20
+                   hover:scale-110 active:scale-95 cursor-pointer ${isPanelOpen ? '' : 'rounded-r-xl -left-6'}`}
         aria-label={isPanelOpen ? "Close Panel" : "Open Panel"}
       >
-        <div className="transform transition-transform duration-300 w-4 h-4 flex items-center justify-center">
-          {isPanelOpen ? '←' : '→'}
+        <div className="transform transition-transform duration-300 w-6 h-6 flex items-center justify-center font-bold text-lg">
+          {isPanelOpen ? '‹' : '›'}
         </div>
       </button>
 
-      {isPanelOpen && (
+      {isPanelOpen ? (
         <div className="p-6 space-y-8 w-full max-w-sm md:max-w-md">
-          {/* Main Title */}
           <div className="text-center pb-4 border-b border-gray-700/50">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
               Topology Controls
@@ -48,7 +45,6 @@ export function ControlPanel() {
             <p className="text-sm text-gray-400 mt-1 font-light">Real-time Infrastructure Monitoring</p>
           </div>
 
-          {/* Tab Navigation */}
           <div className="flex bg-gray-800/50 rounded-xl p-1 border border-gray-700/50 shadow-inner">
             <button
               onClick={() => setActiveTab('filters')}
@@ -72,10 +68,8 @@ export function ControlPanel() {
             </button>
           </div>
 
-          {/* Tab Content */}
           <div className="tab-content">
             {activeTab === 'filters' && (
-              // Passing imported data to the FilterSection
               <FilterSection exchanges={EXCHANGE_LOCATIONS} regions={CLOUD_REGIONS} />
             )}
             {activeTab === 'history' && (
@@ -85,7 +79,6 @@ export function ControlPanel() {
           
           <Legend />
 
-          {/* Performance Metrics Dashboard */}
           <div className="pt-6 border-t border-gray-700/50">
             <h3 className="text-lg font-bold text-white mb-4 flex items-center">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
@@ -128,6 +121,12 @@ export function ControlPanel() {
                 </span>
               </div>
             </div>
+          </div>
+        </div>
+      ) : (
+        <div className="h-full flex items-center justify-center">
+          <div className="transform -rotate-90 whitespace-nowrap text-gray-400 font-semibold">
+            Open Sidebar
           </div>
         </div>
       )}
