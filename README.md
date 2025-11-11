@@ -25,16 +25,14 @@ Libraries Used
 
 🛠️ Local Setup and Running Instructions
 This project requires Node.js (LTS) and npm to run.
-•	Clone the Repository:
-	git clone [YOUR GITHUB REPO LINK HERE]
+
+•	Clone the Repository: git clone https://github.com/Aayushnhk/LATENCY-TOPOLOGY-VISUALIZER
 
 •	cd latency-topology-visualizer
 
-•	Install Dependencies:
-	npm install
+•	Install Dependencies: npm install
 
-•	Run the Development Server (using Turbopack):
-	npm run dev
+•	Run the Development Server (using Turbopack):  npm run dev
 
 •	Access the Application: Open your browser and navigate to http://localhost:3000.
 
