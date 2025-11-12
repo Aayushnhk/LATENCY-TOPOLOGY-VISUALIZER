@@ -126,7 +126,7 @@ export function ControlPanel() {
       ) : (
         <div className="h-full flex items-center justify-center">
           <div className="transform -rotate-90 whitespace-nowrap text-gray-400 font-semibold">
-            Open Sidebar
+            Open Control Panel
           </div>
         </div>
       )}
